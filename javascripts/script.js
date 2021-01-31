@@ -25,18 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
   class Gallery {
     init() {
       let date = Utilities.getTodayDate();
-      API.getNews(null, date, this.populatePage);
+      // API.getNews(null, date, this.populatePage);
     }
 
     populatePage(title, summary, link) {
       let div1 = document.querySelector("#div-1");
-      div1.innerText = title;
+       div1.insertAdjacentHTML('beforeend', title);
+      // div1.innerText = title;
     }
   }
 
   class API {
     static getNews(query, date, populate) {
-      if (!query) query = '*';
+      if (!query) query = 'trump';
 
        fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&topic=news&sources=cnn.com&country=US&lang=en&from=${date}&page_size=1`, {
       "method": "GET",

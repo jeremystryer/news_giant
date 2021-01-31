@@ -1,21 +1,63 @@
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 300px 300px 300px;
-  grid-gap: 5px;
-  opacity: 0.4;
-  z-index: -1;
+html, body {
+  background: url("images/blue_shades_background.jpg");
+  background-size: cover;
 }
+
+.container {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  row-gap: 2.5em;
+  align-items: center;
+  margin: 0 auto;
+  opacity: .8;
+  /* outline: 1px solid blue; */
+  /* z-index: -1; */
+}
+
+@media screen and (min-width: 900px) {
+  .container {
+    /* width: 90%; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 3em;
+    /* grid-gap: 20px; */
+    /* z-index: -1; */
+  }
+}
+
+/* @media screen and (min-width: 600px ) */
+
+/* .container div:nth-last-child(1) {
+  outline: 1px solid red;
+  grid-column: span 2;
+} */
 
 * {
   font-family: Helvetica;
-  font-size: 1.4em;
+  font-size: 1.1em;
   color: white;
-  text-align: center;
+  /* text-align: center; */
+  box-sizing: border-box;
 }
 
-.container div:nth-child(1), div:nth-child(6) {
+div {
+  color: black;
+  /* outline: 1px solid green; */
+  display: flex;
+  justify-content: center;
+  /* height: 300px; */
+  /* height: auto; */
+  /* margin: 0; */
+  /* border: 1px solid green; */
+  /* opacity: 0.7; */
+}
+
+/* .container div:nth-child(1), div:nth-child(6) {
   background-color: #B8336A;
+  color: black;
+  margin: auto 0;
+  opacity: 0.7;
 }
 
 .container div:nth-child(2), div:nth-child(7) {
@@ -32,18 +74,42 @@
 
 .container div:nth-child(5) {
   background-color: #e0b6eb;
-}
+} */
 
-#search-box {
+#search-field {
   /* width: 50%; */
   /* padding: 15px 5px; */
   /* text-align: center; */
-  position: absolute;
+  /* position: absolute;
   top: 45%;
-  right: 25%;
+  right: 25%; */
   color: black;
-  z-index: 1;
+  /* z-index: 1; */
+  width: 50%;
+  padding: 10px 15px;
+  margin: 40px 0 50px 0;
+  /* border: 3px solid rgb(73, 101, 160); */
   /* font-weight: bold; */
   /* top:50%; */
   /* left:50%; */
+  border-radius: 10px;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+}
+
+img{
+  display: block;
+  /* border: 1px solid black; */
+  width: 50%;
+  height: auto;
+  /* height: 50%; */
+  box-shadow: 8px 5px 5px rgb(82, 80, 80);
+  /* margin: 0 auto; */
+}
+
+main {
+  /* outline: 1px solid black; */
+  text-align: center;
 }
