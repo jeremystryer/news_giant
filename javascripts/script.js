@@ -66,15 +66,15 @@ document.addEventListener("DOMContentLoaded", () => {
       let card = this.matchCardToFetchedNewsSource(article.clean_url);
       let articleInfo = this.templates["article-info-placement"](article);
       let cardBack = Utilities.getCardBack(card);
-      cardBack.insertAdjacentHTML("beforeend", articleInfo);
-      
+      // cardBack.insertAdjacentHTML("beforeend", articleInfo);
+      cardBack.innerHTML = articleInfo;
       card.classList.add("flip");
     }
   }
 
   class API {
     static getNews(query, date, populate) {
-       fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&topic=news&sources=foxnews.com&country=US&lang=en&from=${date}&page_size=1`, {
+       fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&topic=news&sources=cnn.com&country=US&lang=en&from=${date}&page_size=1`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-key": "4a434644b7mshf0c157810805032p180f52jsn6f7ab924b303",
