@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   class App {
     constructor() {
-      // this.utilities = new Utilities();
-      // this.api = new API();
       this.gallery = new Gallery(); 
       this.init();
     }
@@ -24,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     static getNewsName(url) {
       return url.split(".")[0];
+    }
+
+    static getCardBack(card) {
+      return [...card.children].filter(child => child.classList.contains("card-back"))[0]
     }
   }
   class Gallery {
@@ -61,25 +63,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     populateCard(article) {
-      
-      // Utilities.getNewsName(article.clean_url);
       let card = this.matchCardToFetchedNewsSource(article.clean_url);
-
-      // let card = document.querySelector(".card");
-      // let cardBack = document.querySelector(".card-back");
       let articleInfo = this.templates["article-info-placement"](article);
-      debugger;
-      // let articleTitle = document.querySelector(".article-title");
-  
+      let cardBack = Utilities.getCardBack(card);
       cardBack.insertAdjacentHTML("beforeend", articleInfo);
-      // card.forEach(card => card.classList.add("flip"));
+      
       card.classList.add("flip");
     }
   }
 
   class API {
     static getNews(query, date, populate) {
-       fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&topic=news&sources=cnn.com&country=US&lang=en&from=${date}&page_size=1`, {
+       fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&topic=news&sources=foxnews.com&country=US&lang=en&from=${date}&page_size=1`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-key": "4a434644b7mshf0c157810805032p180f52jsn6f7ab924b303",
@@ -101,46 +96,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   new App();
 });
-
-  
-
-  // searchField.addEventListener("change", event => {
-  //   let query = event.target.value;
-
-  //   fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&sources=cnn.com&lang=en`, {
-  //     "method": "GET",
-  //     "headers": {
-  //       "x-rapidapi-key": "4a434644b7mshf0c157810805032p180f52jsn6f7ab924b303",
-  //       "x-rapidapi-host": "newscatcher.p.rapidapi.com"
-  //     }
-  //     })
-  //     .then(response => {
-  //       return response.json();
-  //     })
-  //     .then(data => {
-  //       console.log(data);
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //     });
-  // });
-
-
-
-  // fetch("https://newscatcher.p.rapidapi.com/v1/search?q=${query}&sort_by=date&sources=cnn.com&page_size=1", {
-	// "method": "GET",
-	// "headers": {
-	// 	"x-rapidapi-key": "4a434644b7mshf0c157810805032p180f52jsn6f7ab924b303",
-	// 	"x-rapidapi-host": "newscatcher.p.rapidapi.com"
-	// }
-  // })
-  // .then(response => {
-  //   return response.json();
-  // })
-  // .then(data => {
-  //   console.log(data);
-  // })
-  // .catch(err => {
-  //   console.error(err);
-  // });
-
