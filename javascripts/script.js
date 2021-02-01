@@ -29,6 +29,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     addEventListeners() {
       this.search();
+      this.processTemplates();
+    }
+
+    processTemplates() {
+      this.templates = {};
+
+      document.querySelectorAll("script[type='text/x-handlebars']").forEach(tmpl => {
+        this.templates[tmpl["id"]] = Handlebars.compile(tmpl["innerHTML"]);
+      });
     }
 
     search() {
@@ -37,12 +46,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       searchField.addEventListener("change", event => {
         let query = event.target.value;
-        API.getNews(query, date, this.populatePage.bind(this));
+        API.getNews(query, date, this.populateCard.bind(this));
       });
     }
 
-    populatePage(title, summary, link) {
-      console.log(title);
+    populateCard(article) {
+      let flipCardBack = document.querySelector(".flip-card-back");
+      let articleInfo = this.templates["article-info-placement"](article);
+      // let articleTitle = document.querySelector(".article-title");
+  
+      flipCardBack.insertAdjacentHTML("beforeend", articleInfo);
     }
   }
 
@@ -60,10 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(data => {
         let article = data.articles[0];
-        article.title;
-        article.summary;
-        article.link;
-        populate(article.title);
+        populate(article);
       })
       .catch(err => {
         console.error(err);

@@ -21,31 +21,17 @@
             <div id="div1"><img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-front"></div>
           </div> 
 
-          <div class="flip-card-back">
-  
-            <!-- <p>HERE IS THE ARTICLE</p> -->
-            <script id="article-info" type='text/x-handlebars-template'>
-              <img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-back">
-              <p>{{title}}</p>
-            </script>
-
-          </div>
+          <div class="flip-card-back"></div>
       </section>
 
-      <section class="flip-card">
+      <!-- <section class="flip-card">
         <div class="flip-card-inner">
           
           <div class="flip-card-front">
             <div id="div1"><img src="images/logos/foxnews.png" alt="foxnews logo" class="logo-card-front"></div>
           </div> 
 
-          <div class="flip-card-back">
-  
-            <script id="article-info" type='text/x-handlebars-template'>
-              <img src="images/logos/foxnews.png" alt="foxnews logo" class="logo-card-back">
-              <p>{{title}}</p>
-            </script>
-
+          <div class="flip-card-back">  
           </div>
 
         </div>
@@ -68,7 +54,7 @@
           </div>
 
         </div>
-      </section>
+      </section> -->
 
 
 
@@ -84,5 +70,10 @@
       <div id="div9"><img src="images/logos/nationalreview.png" alt="national review logo" class="logo-card-front"></div> -->
   <!-- </div> -->
   </main>
+
+  <script id="article-info-placement" type="text/x-handlebars">
+    <!-- <img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-back"> -->
+    <p class="article-title">{{title}}</p>
+  </script>
 </body>
 </html>

@@ -110,17 +110,14 @@ main {
 }
 
 .flip-card:hover .flip-card-back {
-  /* transform: rotateY(180deg); */
   opacity: 1;
   transition-delay: .17s;
 }
 
 .flip-card:hover .flip-card-front {
-  /* transform: rotateY(180deg); */
   opacity: 0;
   transition-delay: .17s;
 }
-
 
 .flip-card-back {
   background: lightblue;
