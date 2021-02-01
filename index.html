@@ -17,7 +17,7 @@
 
       <section class="card" id="cnn">
           <div class="card-front">
-            <div id="div1"><img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-front"></div>
+            <img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-front">
           </div> 
 
           <div class="card-back"></div>
@@ -25,7 +25,7 @@
 
       <section class="card" id="foxnews">
         <div class="card-front">
-          <div id="div1"><img src="images/logos/foxnews.png" alt="foxnews logo" class="logo-card-front"></div>
+          <img src="images/logos/foxnews.png" alt="foxnews logo" class="logo-card-front">
         </div> 
 
         <div class="card-back"></div>
@@ -34,9 +34,9 @@
 
   <script id="article-info-placement" type="text/x-handlebars">
     <img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-back">
-    <p class="article-title">{{title}}</p>
-    <p>Read Article Summary</p>
-    <p><a href="{{link}}" target="_blank">Read Article on {{clean_url}}</a></p>
+    <h1 class="article-title">{{title}}</h1>
+    <p class="read-summary-link"><a href="#" target="_blank">Read Summary of Article</a></p></p>
+    <p class="read-article-link"><a href="{{link}}" target="_blank">Read Article on {{clean_url}}</a></p>
   </script>
 </body>
 </html>
