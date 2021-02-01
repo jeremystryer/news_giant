@@ -1,0 +1,9 @@
+News Giant is a searched-based news aggregator that sources political articles from left, center, and right media outlets. The application leverages [Newscatcher] API (https://rapidapi.com/newscatcher-api-newscatcher-api-default/api/newscatcher?endpoint=apiendpoint_8218240c-8c08-420b-8cfe-36a56759f524). 
+
+I have always been curious about how people (and, by extension, these news media outlets) can have such different perspectives about the same topic. My goal in creating this site was to create a straightforward tool for checking how different media companies cover a specific person, issue, or event. While News Giant is extremely limited in scope (only one article per media outlet), it provides a small sample of the type of article that the media outlet tends to feature in their reporting.
+
+Each "card" (the small section dedicated to each news outlet) provides a link for a summary of the article as well as a link to the full article. Clicking on the link to the summary opens up a modal window within the News Giant page where the user can get an idea of the premise of the article. Clicking on a link to the full article will take the user to the news outlet's website.s
+
+Since the application uses Newscatcher's free version, API requests are throttled to 21 per hour. Initially, I had wanted to include more than a dozen media sources on the website, but to the best of my knowledge Newscatcher's API does not allow for a request to specify more than one specific news source. Therefore, each requested article requires a separate API request. As a result, I have limited News Giant to only six media outlets and even still there can only be three searches per hour. If I find a free API alternative that fits the site's needs better, I will change to it.
+
+If you have any ideas for how to improve this application, know of another news API, or would like to continue developing this app, please let me know.s
