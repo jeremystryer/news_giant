@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-  <script src="javascripts/script.js"></script>
-  <title>News Search</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="javascripts/script.js"></script>
+    <title>News Search</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="website-name">NEWS GIANT</h1>
+    </header>
+
     <section id="search-field-section">
       <input type="text" id="search-field" placeholder="What's on your mind? See what they're saying...">
     </section>
@@ -29,15 +33,70 @@
         </div> 
 
         <div class="card-back"></div>
-    </section>
-  </main>
+      </section>
 
-  <script id="article-info-placement" type="text/x-handlebars">
-    <!-- <img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-back"> -->
-    <img src="images/logos/{{news-name}}.png" alt="{{news-name}} logo" class="logo-card-back">
-    <h2 class="article-title">{{title}}</h2>
-    <p class="read-summary-link"><a href="#" target="_blank">Read Summary of Article</a></p></p>
-    <p class="read-article-link"><a href="{{link}}" target="_blank">Read Article on {{clean_url}}</a></p>
-  </script>
-</body>
+      <section class="card" id="politico">
+        <div class="card-front">
+          <img src="images/logos/politico.png" alt="politico.png logo" class="logo-card-front">
+        </div> 
+
+        <div class="card-back"></div>
+      </section>
+
+      <section class="card" id="nypost">
+        <div class="card-front">
+          <img src="images/logos/nypost.png" alt="nypost logo" class="logo-card-front">
+        </div> 
+
+        <div class="card-back"></div>
+      </section>
+
+      <section class="card" id="newyorker">
+        <div class="card-front">
+          <img src="images/logos/newyorker2.png" alt="newyorker logo" class="logo-card-front">
+        </div> 
+
+        <div class="card-back"></div>
+      </section>
+
+      <section class="card" id="wsjs">
+        <div class="card-front">
+          <img src="images/logos/wsj.png" alt="wsj logo" class="logo-card-front">
+        </div> 
+
+        <div class="card-back"></div>
+      </section>
+
+      <section class="card" id="nationalreview">
+        <div class="card-front">
+          <img src="images/logos/nationalreview.png" alt="nationalreview logo" class="logo-card-front">
+        </div> 
+
+        <div class="card-back"></div>
+      </section>
+
+      <section class="card" id="federalist">
+        <div class="card-front">
+          <img src="images/logos/federalist2.jpeg" alt="federalist logo" class="logo-card-front">
+        </div> 
+
+        <div class="card-back"></div>
+      </section>
+
+      <section class="card" id="foxnews">
+        <div class="card-front">
+          <img src="images/logos/ap.png" alt="ap logo" class="logo-card-front">
+        </div> 
+
+        <div class="card-back"></div>
+      </section>
+    </main>
+
+    <script id="article-info-placement" type="text/x-handlebars">
+      <img src="images/logos/{{news-name}}.png" alt="{{news-name}} logo" class="logo-card-back">
+      <h2 class="article-title">{{title}}</h2>
+      <p class="read-summary-link"><a href="#" target="_blank">Read Summary of Article</a></p></p>
+      <p class="read-article-link"><a href="{{link}}" target="_blank">Read Article on {{clean_url}}</a></p>
+    </script>
+  </body>
 </html>

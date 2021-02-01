@@ -1,6 +1,35 @@
 html, body {
   background: url("images/blue_shades_background.jpg");
   background-size: cover;
+  font: 16px normal Helvetica Arial, Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 0.911);
+  box-sizing: border-box;
+}
+
+/* * {
+  font-family: Helvetica;
+  font-size: 1.1em;
+  color: white;
+  box-sizing: border-box;
+} */
+
+header {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#search-field-section {
+  /* outline: 3px solid white; */
+}
+
+#search-field {
+  font-size: 1.75em;
+  color: rgb(0, 25, 78);
+  width: 50%;
+  height: 100%;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 .container {
@@ -11,6 +40,7 @@ html, body {
   align-items: center;
   margin: 0 auto;
   opacity: .8;
+  text-align: center;
 }
 
 @media screen and (min-width: 900px) {
@@ -19,28 +49,6 @@ html, body {
     grid-template-columns: repeat(3, 1fr);
     row-gap: 3em;
   }
-}
-
-* {
-  font-family: Helvetica;
-  font-size: 1.1em;
-  color: white;
-  box-sizing: border-box;
-}
-
-/* div {
-  outline: 3px solid green;
-  color: black;
-  display: flex;
-  justify-content: center;
-} */
-
-#search-field {
-  color: black;
-  width: 50%;
-  padding: 10px 15px;
-  margin: 40px 0 50px 0;
-  border-radius: 10px;
 }
 
 input:focus, textarea:focus, select:focus {
@@ -58,15 +66,12 @@ input:focus, textarea:focus, select:focus {
 
 .logo-card-back {
   display: block;
-  width: 25%;
+  width: 18%;
   height: auto;
   box-shadow: 8px 5px 5px rgb(82, 80, 80);
   margin: 0 auto;
 }
 
-main {
-  text-align: center;
-}
 
 #search-field-section {
   text-align: center;
@@ -117,8 +122,30 @@ main {
   /* outline: 3px solid yellow; */
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
+  overflow: auto;
+  padding: 8px;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 
 .read-summary-link, .read-article-link {
  font-size: .75em;
 }
+
+.article-title {
+  font-size: 0.95em;
+}
+
+#website-name {
+  font-size: 3em;
+}
+
