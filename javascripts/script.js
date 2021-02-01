@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
     static getCardBack(card) {
       return [...card.children].filter(child => child.classList.contains("card-back"))[0]
     }
+
+    static identifyAllCards() {
+      return document.querySelectorAll(".card");
+    }
   }
   class Gallery {
     init() {
@@ -52,29 +56,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
       searchField.addEventListener("change", event => {
         let query = event.target.value;
-        API.getNews(query, date, this.populateCard.bind(this));
+        this.populateAllCards(query, date);
+        // API.getNews(query, date, this.populateCard.bind(this));
       });
     }
 
     matchCardToFetchedNewsSource(fetchedUrl) {
-      const cards = document.querySelectorAll(".card");
+      // const cards = document.querySelectorAll(".card");
+      const CARDS = Utilities.identifyAllCards();
+
       let fetchedNewsName = Utilities.getNewsName(fetchedUrl);
-      return [...cards].filter(card => card.id === fetchedNewsName)[0];      
+      return [...CARDS].filter(card => card.id === fetchedNewsName)[0];      
     }
 
     populateCard(article) {
       let card = this.matchCardToFetchedNewsSource(article.clean_url);
-      let articleInfo = this.templates["article-info-placement"](article);
+
+      const ARTICLE_INFO_FOR_CARD = 
+        {
+          "news-name": Utilities.getNewsName(article.clean_url), 
+          title: article.title, 
+          link: article.link, 
+          clean_url: article.clean_url,
+        }
+            
+      let articleInfo = this.templates["article-info-placement"](ARTICLE_INFO_FOR_CARD);
       let cardBack = Utilities.getCardBack(card);
-      // cardBack.insertAdjacentHTML("beforeend", articleInfo);
       cardBack.innerHTML = articleInfo;
       card.classList.add("flip");
+    }
+
+    populateAllCards(query, date) {
+      const CARDS = Utilities.identifyAllCards();
+      const CARDS_TO_WEBSITES = {
+        cnn: "cnn.com",
+        foxnews: "foxnews.com",
+      }
+
+      for (let i = 0; i < CARDS.length; i += 1) {
+        let card = CARDS[i].id;
+        let website = CARDS_TO_WEBSITES[card];
+        API.getNews(query, date, website, this.populateCard.bind(this));
+      }
     }
   }
 
   class API {
-    static getNews(query, date, populate) {
-       fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&topic=news&sources=cnn.com&country=US&lang=en&from=${date}&page_size=1`, {
+    static getNews(query, date, website, populateCallback) {
+       fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&topic=news&sources=${website}&country=US&lang=en&from=${date}&page_size=1`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-key": "4a434644b7mshf0c157810805032p180f52jsn6f7ab924b303",
@@ -86,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(data => {
         let article = data.articles[0];
-        populate(article);
+        populateCallback(article);
       })
       .catch(err => {
         console.error(err);
