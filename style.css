@@ -48,7 +48,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .logo-card-front {
-  outline: 3px solid green;
+  /* outline: 3px solid green; */
   display: block;
   width: 50%;
   height: auto;

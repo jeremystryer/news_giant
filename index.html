@@ -33,8 +33,9 @@
   </main>
 
   <script id="article-info-placement" type="text/x-handlebars">
-    <img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-back">
-    <h1 class="article-title">{{title}}</h1>
+    <!-- <img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-back"> -->
+    <img src="images/logos/{{news-name}}.png" alt="{{news-name}} logo" class="logo-card-back">
+    <h2 class="article-title">{{title}}</h2>
     <p class="read-summary-link"><a href="#" target="_blank">Read Summary of Article</a></p></p>
     <p class="read-article-link"><a href="{{link}}" target="_blank">Read Article on {{clean_url}}</a></p>
   </script>
