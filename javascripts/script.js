@@ -24,21 +24,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   class Gallery {
     init() {
-      let date = Utilities.getTodayDate();
-      // API.getNews(null, date, this.populatePage);
+      this.addEventListeners();
     }
 
-    populatePage(title, summary, link) {
-      let div1 = document.querySelector("#div-1");
-       div1.insertAdjacentHTML('beforeend', title);
-      // div1.innerText = title;
+    addEventListeners() {
+      this.search();
+      this.processTemplates();
+    }
+
+    processTemplates() {
+      this.templates = {};
+
+      document.querySelectorAll("script[type='text/x-handlebars']").forEach(tmpl => {
+        this.templates[tmpl["id"]] = Handlebars.compile(tmpl["innerHTML"]);
+      });
+    }
+
+    search() {
+      let searchField = document.querySelector("#search-field");
+      let date = Utilities.getTodayDate();
+
+      searchField.addEventListener("change", event => {
+        let query = event.target.value;
+        API.getNews(query, date, this.populateCard.bind(this));
+      });
+    }
+
+    populateCard(article) {
+      let flipCardBack = document.querySelector(".flip-card-back");
+      let articleInfo = this.templates["article-info-placement"](article);
+      // let articleTitle = document.querySelector(".article-title");
+  
+      flipCardBack.insertAdjacentHTML("beforeend", articleInfo);
     }
   }
 
   class API {
     static getNews(query, date, populate) {
-      if (!query) query = 'trump';
-
        fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&topic=news&sources=cnn.com&country=US&lang=en&from=${date}&page_size=1`, {
       "method": "GET",
       "headers": {
@@ -51,11 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(data => {
         let article = data.articles[0];
-        article.title;
-        article.summary;
-        article.link;
-        console.log(article);
-        populate(article.title);
+        populate(article);
       })
       .catch(err => {
         console.error(err);
