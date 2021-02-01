@@ -6,4 +6,6 @@ Each "card" (the small section dedicated to each news outlet) provides a link fo
 
 Since the application uses Newscatcher's free version, API requests are throttled to 21 per hour. Initially, I had wanted to include more than a dozen media sources on the website, but to the best of my knowledge Newscatcher's API does not allow for a request to specify more than one specific news source. Therefore, each requested article requires a separate API request. As a result, I have limited News Giant to only six media outlets and even still there can only be three searches per hour. If I find a free API alternative that fits the site's needs better, I will change to it.
 
+I built News Giant from scratch using pure HTML, CSS, and vanilla JavaScript (with some handlebars.js). I use the Fetch API for the Newscatcher API requests.
+
 If you have any ideas for how to improve this application, know of another news API, or would like to continue developing this app, please let me know.s
