@@ -84,7 +84,50 @@ main {
   text-align: center;
 }
 
+#search-field-section {
+  text-align: center;
+}
+
+/* .flip-card-back {
+  display: none;
+} */
+
+.flip-card {
+  /* background-color: transparent; */
+  /* width: 300px;
+  height: 300px; */
+  /* perspective: 1000px; */
+  background-color: rgb(226, 211, 211);
+  height: 300px;
+  margin: 20px;
+  transition: transform 0.6s;
+  /* width: 300px; */
+}
+
+.flip-card:hover {
+  transform: rotateY(180deg);
+  opacity: 1;
+}
+
+.flip-card:hover .flip-card-back {
+  /* transform: rotateY(180deg); */
+  opacity: 1;
+  transition-delay: .17s;
+}
+
+.flip-card:hover .flip-card-front {
+  /* transform: rotateY(180deg); */
+  opacity: 0;
+  transition-delay: .17s;
+}
+
 
 .flip-card-back {
-  display: none;
+  background: lightblue;
+  opacity: 0;
+  transition-delay: .17s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(.5turn);
 }

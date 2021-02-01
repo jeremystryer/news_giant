@@ -9,30 +9,30 @@
   <title>News Search</title>
 </head>
 <body>
-  <main>
-    <input type="text" id="search-field" placeholder="What's on your mind? See what they're saying...">
-    <div class="container">
+  <!-- <main> -->
+    <section id="search-field-section">
+      <input type="text" id="search-field" placeholder="What's on your mind? See what they're saying...">
+    </section>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          
+    <main class="container">
+
+      <section class="flip-card">
           <div class="flip-card-front">
             <div id="div1"><img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-front"></div>
           </div> 
 
           <div class="flip-card-back">
   
+            <!-- <p>HERE IS THE ARTICLE</p> -->
             <script id="article-info" type='text/x-handlebars-template'>
               <img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-back">
               <p>{{title}}</p>
             </script>
 
           </div>
+      </section>
 
-        </div>
-      </div>
-
-      <div class="flip-card">
+      <section class="flip-card">
         <div class="flip-card-inner">
           
           <div class="flip-card-front">
@@ -49,9 +49,9 @@
           </div>
 
         </div>
-      </div>
+      </section>
 
-      <div class="flip-card">
+      <section class="flip-card">
         <div class="flip-card-inner">
           
           <div class="flip-card-front">
@@ -68,7 +68,7 @@
           </div>
 
         </div>
-      </div>
+      </section>
 
 
 
@@ -82,7 +82,7 @@
       <div id="div7"><img src="images/logos/federalist.png" alt="federalist logo" class="logo-card-front"></div>
       <div id="div8"><img src="images/logos/ap.png" alt="ap logo" class="logo-card-front"></div>
       <div id="div9"><img src="images/logos/nationalreview.png" alt="national review logo" class="logo-card-front"></div> -->
-  </div>
+  <!-- </div> -->
   </main>
 </body>
 </html>
