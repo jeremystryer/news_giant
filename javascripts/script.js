@@ -21,6 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       return yyyy + '/' + mm + '/' + dd;
     }
+
+    static getNewsName(url) {
+      return url.split(".")[0];
+    }
   }
   class Gallery {
     init() {
@@ -50,12 +54,26 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    matchCardToFetchedNewsSource(fetchedUrl) {
+      const cards = document.querySelectorAll(".card");
+      let fetchedNewsName = Utilities.getNewsName(fetchedUrl);
+      return [...cards].filter(card => card.id === fetchedNewsName)[0];      
+    }
+
     populateCard(article) {
-      let flipCardBack = document.querySelector(".flip-card-back");
+      
+      // Utilities.getNewsName(article.clean_url);
+      let card = this.matchCardToFetchedNewsSource(article.clean_url);
+
+      // let card = document.querySelector(".card");
+      // let cardBack = document.querySelector(".card-back");
       let articleInfo = this.templates["article-info-placement"](article);
+      debugger;
       // let articleTitle = document.querySelector(".article-title");
   
-      flipCardBack.insertAdjacentHTML("beforeend", articleInfo);
+      cardBack.insertAdjacentHTML("beforeend", articleInfo);
+      // card.forEach(card => card.classList.add("flip"));
+      card.classList.add("flip");
     }
   }
 

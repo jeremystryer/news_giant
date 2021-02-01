@@ -78,6 +78,12 @@ input:focus, textarea:focus, select:focus {
   /* margin: 0 auto; */
 }
 
+.logo-card-back {
+  display: block;
+  width: 30%;
+  height: auto;
+}
+
 
 main {
   /* outline: 1px solid black; */
@@ -92,7 +98,7 @@ main {
   display: none;
 } */
 
-.flip-card {
+.card {
   /* background-color: transparent; */
   /* width: 300px;
   height: 300px; */
@@ -104,27 +110,37 @@ main {
   /* width: 300px; */
 }
 
-.flip-card:hover {
+.flip {
+  transform: rotateY(180deg);
+}
+
+/* .flip-card:hover {
   transform: rotateY(180deg);
   opacity: 1;
-}
+} */
 
-.flip-card:hover .flip-card-back {
-  opacity: 1;
-  transition-delay: .17s;
-}
 
-.flip-card:hover .flip-card-front {
+/* .flip-card:hover .flip-card-front {
   opacity: 0;
   transition-delay: .17s;
-}
+} */
 
-.flip-card-back {
-  background: lightblue;
+
+/* .flip-card:hover .flip-card-front {
   opacity: 0;
   transition-delay: .17s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+} */
+
+.card-back {
+  /* background: lightblue; */
+  /* opacity: 0; */
+  transition-delay: .17s;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
   transform: rotateY(.5turn);
+}
+
+.article-title {
+  display: block;
 }

@@ -16,7 +16,7 @@
 
     <main class="container">
 
-      <section class="flip-card">
+      <section class="card" id="cnn">
           <div class="flip-card-front">
             <div id="div1"><img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-front"></div>
           </div> 
@@ -24,20 +24,15 @@
           <div class="flip-card-back"></div>
       </section>
 
+      <section class="card" id="foxnews">
+        <div class="card-front">
+          <div id="div1"><img src="images/logos/foxnews.png" alt="foxnews logo" class="logo-card-front"></div>
+        </div> 
+
+        <div class="card-back"></div>
+    </section>
+
       <!-- <section class="flip-card">
-        <div class="flip-card-inner">
-          
-          <div class="flip-card-front">
-            <div id="div1"><img src="images/logos/foxnews.png" alt="foxnews logo" class="logo-card-front"></div>
-          </div> 
-
-          <div class="flip-card-back">  
-          </div>
-
-        </div>
-      </section>
-
-      <section class="flip-card">
         <div class="flip-card-inner">
           
           <div class="flip-card-front">
@@ -72,7 +67,7 @@
   </main>
 
   <script id="article-info-placement" type="text/x-handlebars">
-    <!-- <img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-back"> -->
+    <img src="images/logos/cnn.png" alt="cnn logo" class="logo-card-back">
     <p class="article-title">{{title}}</p>
   </script>
 </body>
