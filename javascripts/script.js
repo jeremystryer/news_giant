@@ -83,6 +83,22 @@ document.addEventListener("DOMContentLoaded", () => {
       card.classList.add("flip");
     }
 
+    showNoContentMessage(fetchedUrl) {
+      const CARDS = Utilities.identifyAllCards();
+      let card = this.matchCardToFetchedNewsSource(fetchedUrl);
+      let cardBack = Utilities.getCardBack(card);
+
+      const ARTICLE_INFO_FOR_CARD = 
+        { 
+          "news-name": Utilities.getNewsName(fetchedUrl),
+          message: "No Article Available Today On This Topic",
+        }
+
+      let articleInfo = this.templates["no-content-placement"](ARTICLE_INFO_FOR_CARD); 
+      cardBack.innerHTML = articleInfo;
+      card.classList.add("flip");
+    }
+
     populateAllCards(query, date) {
       const CARDS = Utilities.identifyAllCards();
       const CARDS_TO_WEBSITES = {
@@ -104,13 +120,17 @@ document.addEventListener("DOMContentLoaded", () => {
         let card = CARDS[i].id;
         let website = CARDS_TO_WEBSITES[card];
 
-        API.getNews(query, date, website, this.populateCard.bind(this));
+        API.getNews(query, date, website, this.populateCard.bind(this), this.showNoContentMessage.bind(this));
       }
     }
   }
 
   class API {
-    static getNews(query, date, website, populateCallback) {
+    cosntructor() {
+      this.tooManyRequests = false;
+    }
+
+    static getNews(query, date, website, populateCallback, showNoContentCallback) {
        fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&topic=news&sources=${website}&country=US&lang=en&from=${date}&page_size=1`, {
       "method": "GET",
       "headers": {
@@ -122,12 +142,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return response.json();
       })
       .then(data => {
-        let article = data.articles[0];
-        populateCallback(article);
+        if (this.tooManyRequests) {
+          return;
+        }
+
+        if (data.message) {
+          this.tooManyRequests = true;
+          alert("As a free service, only a limited number of searches are available per hour. Please try again later.");
+        } else if (data.status === "No matches for your search.") {
+          this.tooManyRequests = false;
+          showNoContentCallback(data.user_input.sources[0]);
+        } else {
+          this.tooManyRequests = false;
+          let article = data.articles[0];
+          populateCallback(article);
+        }
       })
       .catch(err => {
-        // console.error(err);
-        alert("Some sources have no matching articles from today.");
+        debugger;
       });
     }
   }

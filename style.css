@@ -105,7 +105,7 @@ input:focus, textarea:focus, select:focus {
    color: rgba(255, 255, 255, 0.911);
  }
  
- .article-title {
+ .article-title, .no-content-message {
    font-size: 1.5em;
  }
  
