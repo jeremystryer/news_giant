@@ -12,7 +12,7 @@ header {
 }
 
 #website-name {
-  font-size: 3em;
+  font-size: 4em;
 }
 
 #search-field-section {
@@ -20,7 +20,7 @@ header {
 }
 
 #search-field {
-  font-size: 1.75em;
+  font-size: 1em;
   color: rgb(0, 25, 78);
   width: 50%;
   height: 100%;
@@ -33,6 +33,22 @@ input:focus, textarea:focus, select:focus {
   outline: none;
 }
 
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder { 
+  text-align: center;  
+}
+
+::-moz-placeholder {  
+  text-align: center;  
+}
+
+:-ms-input-placeholder {  
+  text-align: center; 
+}
+
 .container {
   width: 90%;
   display: grid;
@@ -42,6 +58,12 @@ input:focus, textarea:focus, select:focus {
   margin: 0 auto;
   opacity: .8;
   text-align: center;
+}
+
+@media only screen and (min-width: 500px) {
+  #search-field {
+      font-size: 1.75em;
+  }
 }
 
 @media screen and (min-width: 900px) {
