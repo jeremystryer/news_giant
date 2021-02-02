@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   class API {
-    cosntructor() {
+    constructor() {
       this.tooManyRequests = false;
     }
 
