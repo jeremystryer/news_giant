@@ -126,7 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
         populateCallback(article);
       })
       .catch(err => {
-        console.error(err);
+        // console.error(err);
+        alert("Some sources have no matching articles from today.");
       });
     }
   }
