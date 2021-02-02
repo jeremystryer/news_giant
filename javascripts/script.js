@@ -57,27 +57,24 @@ document.addEventListener("DOMContentLoaded", () => {
       searchField.addEventListener("change", event => {
         let query = event.target.value;
         this.populateAllCards(query, date);
-        // API.getNews(query, date, this.populateCard.bind(this));
       });
     }
 
     matchCardToFetchedNewsSource(fetchedUrl) {
-      // const cards = document.querySelectorAll(".card");
       const CARDS = Utilities.identifyAllCards();
-
       let fetchedNewsName = Utilities.getNewsName(fetchedUrl);
       return [...CARDS].filter(card => card.id === fetchedNewsName)[0];      
     }
 
     populateCard(article) {
       let card = this.matchCardToFetchedNewsSource(article.clean_url);
-
       const ARTICLE_INFO_FOR_CARD = 
         {
           "news-name": Utilities.getNewsName(article.clean_url), 
           title: article.title, 
           link: article.link, 
           clean_url: article.clean_url,
+          summary: article.summary,
         }
             
       let articleInfo = this.templates["article-info-placement"](ARTICLE_INFO_FOR_CARD);
@@ -90,12 +87,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const CARDS = Utilities.identifyAllCards();
       const CARDS_TO_WEBSITES = {
         cnn: "cnn.com",
+        nationalreview: "nationalreview.com",
         foxnews: "foxnews.com",
+        federalist: "federalist.com",
+        nypost: "nypost.com",
+        newyorker: "newyorker.com",
+        ap: "ap.com",
+        wsj: "wsj.com",
+        politico: "politico.com",
+        bloomberg: "bloomberg.com",
+        vox: "vox.com",
+        newsweek: "newsweek.com",
       }
 
       for (let i = 0; i < CARDS.length; i += 1) {
         let card = CARDS[i].id;
         let website = CARDS_TO_WEBSITES[card];
+
         API.getNews(query, date, website, this.populateCard.bind(this));
       }
     }

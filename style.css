@@ -60,13 +60,13 @@ input:focus, textarea:focus, select:focus {
   display: block;
   width: 50%;
   height: auto;
-  box-shadow: 8px 5px 5px rgb(82, 80, 80);
+  box-shadow: 12px 5px 5px rgb(82, 80, 80);
   margin: auto;
 }
 
 .logo-card-back {
   display: block;
-  width: 18%;
+  width: 30%;
   height: auto;
   box-shadow: 8px 5px 5px rgb(82, 80, 80);
   margin: 0 auto;
@@ -138,11 +138,16 @@ input:focus, textarea:focus, select:focus {
 }
 
 .read-summary-link, .read-article-link {
- font-size: .75em;
+ font-size: 1.5em;
+ text-decoration: none;
+}
+
+a {
+  color: rgba(255, 255, 255, 0.911);
 }
 
 .article-title {
-  font-size: 0.95em;
+  font-size: 1.5em;
 }
 
 #website-name {
