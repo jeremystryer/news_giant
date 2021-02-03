@@ -1,3 +1,5 @@
+Website: https://jeremystryer.github.io/news_giant/
+
 ![Screenshot of News Giant](/images/news-giant-screenshot.png?raw=true "News Giant")
 
 News Giant is a searched-based news aggregator that sources articles from left, center, and right media outlets. The application leverages the [Newscatcher API](https://rapidapi.com/newscatcher-api-newscatcher-api-default/api/newscatcher?endpoint=apiendpoint_8218240c-8c08-420b-8cfe-36a56759f524). 
