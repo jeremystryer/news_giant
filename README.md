@@ -1,8 +1,8 @@
-Website: https://jeremystryer.github.io/news_giant/
+<a href="https://jeremystryer.github.io/news_giant/" target="_blank">Click Here To Check Out News Giant</a>
 
 ![Screenshot of News Giant](/images/news-giant-screenshot.png?raw=true "News Giant")
 
-News Giant is a searched-based news aggregator that sources articles from left, center, and right media outlets. The application leverages the [Newscatcher API](https://rapidapi.com/newscatcher-api-newscatcher-api-default/api/newscatcher?endpoint=apiendpoint_8218240c-8c08-420b-8cfe-36a56759f524). 
+<a href="https://jeremystryer.github.io/news_giant/" target="_blank">News Giant</a> is a searched-based news aggregator that sources articles from left, center, and right media outlets. The application leverages the [Newscatcher API](https://rapidapi.com/newscatcher-api-newscatcher-api-default/api/newscatcher?endpoint=apiendpoint_8218240c-8c08-420b-8cfe-36a56759f524). 
 
 As an educator who has tutored middle school, high school, and college students in essay and research writing, I have at times had students investigate current events as part of an assignment. My students have consistently had doubts about where to start looking for information and some students commented to me that the type of information that they found varied a lot depending on the news website. I would often suggest to them the names of a few different websites and tell them to start by Googling the topic, but I thought that a search tool that could collect a few articles from different media outlets on any given topic would be handy.
 
