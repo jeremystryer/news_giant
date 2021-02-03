@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     static getNews(query, date, website, populateCallback, showNoContentCallback) {
-       fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${"query"}&sources=${website}&country=US&lang=en&from=${date}&page_size=1`, {
+       fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${query}&sources=${website}&country=US&lang=en&from=${date}&page_size=1`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-key": "4a434644b7mshf0c157810805032p180f52jsn6f7ab924b303",
