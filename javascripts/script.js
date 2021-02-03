@@ -81,6 +81,32 @@ document.addEventListener("DOMContentLoaded", () => {
       let cardBack = Utilities.getCardBack(card);
       cardBack.innerHTML = articleInfo;
       card.classList.add("flip");
+
+      let summaryLink = document.querySelector(".read-summary-link").firstElementChild;
+
+      summaryLink.addEventListener("click", event => {
+        this.showSummary(ARTICLE_INFO_FOR_CARD);
+      });
+    }
+
+    showSummary(article) {
+      let modal = document.querySelector(".modal");
+      let modalContent = document.querySelector(".modal-content");
+      let summary = article.summary;
+      let articleInfo = this.templates["summary"](article);
+      let closeBtn = document.querySelector(".close-button");
+
+      if (summary.length === 0) {
+        summary = "No Summary Is Available."  
+      }
+      modalContent.innerHTML = articleInfo;
+      modal.classList.add("show-modal");
+
+      document.addEventListener("click", event => {
+        if (event.target === closeBtn || event.target === modal) {
+          modal.classList.remove("show-modal");
+        }
+      });
     }
 
     showNoContentMessage(fetchedUrl) {
@@ -159,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
       .catch(err => {
-        debugger;
+        console.log(err);
       });
     }
   }
