@@ -163,6 +163,9 @@ input:focus, textarea:focus, select:focus {
 
 .modal-content {
   position: absolute;
+  overflow: scroll;
+  height: 50%;
+  width: 70%;
   color: rgb(0, 0, 0);
   top: 50%;
   left: 50%;
