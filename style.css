@@ -119,7 +119,7 @@ input:focus, textarea:focus, select:focus {
   margin: 0 auto;
 }
 
-.read-summary-link, .read-article-link {
+.read-summary-link-text, .read-article-link-text {
   font-size: 1.5em;
   text-decoration: none;
  }
