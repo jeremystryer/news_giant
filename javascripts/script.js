@@ -33,6 +33,46 @@ document.addEventListener("DOMContentLoaded", () => {
     constructor(htmlSection) {
       this.html = htmlSection;
     }
+
+    processTemplates() {
+      this.templates = {};
+
+      document.querySelectorAll("script[type='text/x-handlebars']").forEach(tmpl => {
+        this.templates[tmpl["id"]] = Handlebars.compile(tmpl["innerHTML"]);
+      });
+    }
+
+    addSummaryLinkEventListener() {
+      let readSummaryLink = this.html.querySelector(".read-summary-link-text");
+
+      readSummaryLink.addEventListener("click", () => {
+        this.processTemplates();
+        this.showSummary();
+      });
+    }
+
+    showSummary() {
+      let modal = document.querySelector(".modal");
+      let modalContent = document.querySelector(".modal-content");
+      let article = { "news-name": this["news-name"], summary: this["summary"] };
+      let articleInfo = this.templates["summary"](article);
+      let closeBtn;
+      
+      if (summary.length === 0) {
+        summary = "No Summary Is Available.";
+      }
+
+      modalContent.innerHTML = articleInfo;
+      closeBtn = document.querySelector(".close-button");
+      
+      modal.classList.add("show-modal");
+ 
+      document.addEventListener("click", event => {
+        if (event.target === closeBtn || event.target === modal) {
+          modal.classList.remove("show-modal");
+        }
+      });
+    }
   }
   
   class Gallery {
@@ -82,48 +122,16 @@ document.addEventListener("DOMContentLoaded", () => {
       card["news-name"] = Utilities.getNewsName(article.clean_url);
       card.title = article.title;
       card.link = article.link;
-      article.clean_url = article.clean_url;
-      article.summary = article.summary;
+      card.clean_url = article.clean_url;
+      card.summary = article.summary;
 
       let articleInfo = this.templates["article-info-placement"](card);
       let cardBack = Utilities.getCardBack(card);
       cardBack.innerHTML = articleInfo;
 
       card.html.classList.add("flip");
-    }
-
-    selectSummaryLink() {
-      let summaryLinks = [...document.getElementsByClassName("read-summary-link")];
-
-      document.addEventListener("click", event => {
-        if (summaryLinks.includes(event.target)) {
-          console.log('yes');
-        }
-      });
-      
-      // summaryLink.addEventListener("click", event => {
-      //   this.showSummary(ARTICLE_INFO_FOR_CARD);
-      // });
-    }
-
-    showSummary(article) {
-      let modal = document.querySelector(".modal");
-      let modalContent = document.querySelector(".modal-content");
-      let summary = article.summary;
-      let articleInfo = this.templates["summary"](article);
-      let closeBtn = document.querySelector(".close-button");
-
-      if (summary.length === 0) {
-        summary = "No Summary Is Available.";
-      }
-      modalContent.innerHTML = articleInfo;
-      modal.classList.add("show-modal");
-
-      document.addEventListener("click", event => {
-        if (event.target === closeBtn || event.target === modal) {
-          modal.classList.remove("show-modal");
-        }
-      });
+      // this.selectSummaryLink(card);
+      card.addSummaryLinkEventListener();
     }
 
     showNoContentMessage(fetchedUrl) {
@@ -143,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     populateAllCards(query, date) {
-      // const CARDS = Utilities.identifyAllCards();
       const CARDS_TO_WEBSITES = {
         cnn: "cnn.com",
         nationalreview: "nationalreview.com",
