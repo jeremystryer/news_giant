@@ -198,6 +198,11 @@ input:focus, textarea:focus, select:focus {
   line-height: 1.8em;
 }
 
+.continue-read-article-link-text a {
+  color: rgb(0, 0, 0);
+  font-size: 1.3em;
+}
+
 .logo-card-summary {
   display: block;
   width: 12%;

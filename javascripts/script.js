@@ -134,17 +134,21 @@ document.addEventListener("DOMContentLoaded", () => {
     showSummary() {
       let modal = document.querySelector(".modal");
       let modalContent = document.querySelector(".modal-content");
-      let article = { "news-name": this["news-name"], summary: this["summary"] };
+      let article = { 
+        "news-name": this["news-name"], 
+        summary: this["summary"], 
+        link: this["link"] 
+      };
       let articleInfo = this.templates["summary"](article);
       let closeBtn;
-      
+
       if (summary.length === 0) {
         summary = "No Summary Is Available.";
       }
 
       modalContent.innerHTML = articleInfo;
       closeBtn = document.querySelector(".close-button");
-      
+
       modal.classList.add("show-modal");
  
       document.addEventListener("click", event => {
