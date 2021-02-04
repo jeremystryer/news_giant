@@ -10,71 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  class Utilities {
-    static getTodayDate() {
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0');
-      var yyyy = today.getFullYear();
-
-      return yyyy + '/' + mm + '/' + dd;
-    }
-
-    static getNewsName(url) {
-      return url.split(".")[0];
-    }
-
-    static getCardBack(card) {
-      return [...card.html.children].filter(child => child.classList.contains("card-back"))[0];
-    }
-  }
-
-  class Card {
-    constructor(htmlSection) {
-      this.html = htmlSection;
-    }
-
-    processTemplates() {
-      this.templates = {};
-
-      document.querySelectorAll("script[type='text/x-handlebars']").forEach(tmpl => {
-        this.templates[tmpl["id"]] = Handlebars.compile(tmpl["innerHTML"]);
-      });
-    }
-
-    addSummaryLinkEventListener() {
-      let readSummaryLink = this.html.querySelector(".read-summary-link-text");
-
-      readSummaryLink.addEventListener("click", () => {
-        this.processTemplates();
-        this.showSummary();
-      });
-    }
-
-    showSummary() {
-      let modal = document.querySelector(".modal");
-      let modalContent = document.querySelector(".modal-content");
-      let article = { "news-name": this["news-name"], summary: this["summary"] };
-      let articleInfo = this.templates["summary"](article);
-      let closeBtn;
-      
-      if (summary.length === 0) {
-        summary = "No Summary Is Available.";
-      }
-
-      modalContent.innerHTML = articleInfo;
-      closeBtn = document.querySelector(".close-button");
-      
-      modal.classList.add("show-modal");
- 
-      document.addEventListener("click", event => {
-        if (event.target === closeBtn || event.target === modal) {
-          modal.classList.remove("show-modal");
-        }
-      });
-    }
-  }
-  
   class Gallery {
     init() {
       this.cards = this.collectCards();
@@ -130,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
       cardBack.innerHTML = articleInfo;
 
       card.html.classList.add("flip");
-      // this.selectSummaryLink(card);
       card.addSummaryLinkEventListener();
     }
 
@@ -172,6 +106,71 @@ document.addEventListener("DOMContentLoaded", () => {
         
         API.getNews(query, date, website, this.populateCard.bind(this), this.showNoContentMessage.bind(this));
       }
+    }
+  }
+
+  class Card {
+    constructor(htmlSection) {
+      this.html = htmlSection;
+    }
+
+    processTemplates() {
+      this.templates = {};
+
+      document.querySelectorAll("script[type='text/x-handlebars']").forEach(tmpl => {
+        this.templates[tmpl["id"]] = Handlebars.compile(tmpl["innerHTML"]);
+      });
+    }
+
+    addSummaryLinkEventListener() {
+      let readSummaryLink = this.html.querySelector(".read-summary-link-text");
+
+      readSummaryLink.addEventListener("click", () => {
+        this.processTemplates();
+        this.showSummary();
+      });
+    }
+
+    showSummary() {
+      let modal = document.querySelector(".modal");
+      let modalContent = document.querySelector(".modal-content");
+      let article = { "news-name": this["news-name"], summary: this["summary"] };
+      let articleInfo = this.templates["summary"](article);
+      let closeBtn;
+      
+      if (summary.length === 0) {
+        summary = "No Summary Is Available.";
+      }
+
+      modalContent.innerHTML = articleInfo;
+      closeBtn = document.querySelector(".close-button");
+      
+      modal.classList.add("show-modal");
+ 
+      document.addEventListener("click", event => {
+        if (event.target === closeBtn || event.target === modal) {
+          modal.classList.remove("show-modal");
+        }
+      });
+    }
+  }
+
+  class Utilities {
+    static getTodayDate() {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+
+      return yyyy + '/' + mm + '/' + dd;
+    }
+
+    static getNewsName(url) {
+      return url.split(".")[0];
+    }
+
+    static getCardBack(card) {
+      return [...card.html.children].filter(child => child.classList.contains("card-back"))[0];
     }
   }
 
