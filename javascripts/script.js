@@ -25,21 +25,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     static getCardBack(card) {
-      return [...card.children].filter(child => child.classList.contains("card-back"))[0]
-    }
-
-    static identifyAllCards() {
-      return document.querySelectorAll(".card");
+      return [...card.html.children].filter(child => child.classList.contains("card-back"))[0];
     }
   }
+
+  class Card {
+    constructor(htmlSection) {
+      this.html = htmlSection;
+    }
+  }
+  
   class Gallery {
     init() {
+      this.cards = this.collectCards();
       this.addEventListeners();
     }
 
     addEventListeners() {
       this.search();
       this.processTemplates();
+    }
+
+    collectCards() {
+      let cardSections = document.querySelectorAll(".card");
+      return [...cardSections].map(cardSection => {
+        return new Card(cardSection);
+      });
     }
 
     processTemplates() {
@@ -61,32 +72,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     matchCardToFetchedNewsSource(fetchedUrl) {
-      const CARDS = Utilities.identifyAllCards();
       let fetchedNewsName = Utilities.getNewsName(fetchedUrl);
-      return [...CARDS].filter(card => card.id === fetchedNewsName)[0];      
+      return [...this.cards].filter(card => card.html.id === fetchedNewsName)[0];      
     }
 
     populateCard(article) {
       let card = this.matchCardToFetchedNewsSource(article.clean_url);
-      const ARTICLE_INFO_FOR_CARD = 
-        {
-          "news-name": Utilities.getNewsName(article.clean_url), 
-          title: article.title, 
-          link: article.link, 
-          clean_url: article.clean_url,
-          summary: article.summary,
-        }
-            
-      let articleInfo = this.templates["article-info-placement"](ARTICLE_INFO_FOR_CARD);
+      
+      card["news-name"] = Utilities.getNewsName(article.clean_url);
+      card.title = article.title;
+      card.link = article.link;
+      article.clean_url = article.clean_url;
+      article.summary = article.summary;
+
+      let articleInfo = this.templates["article-info-placement"](card);
       let cardBack = Utilities.getCardBack(card);
       cardBack.innerHTML = articleInfo;
-      card.classList.add("flip");
 
-      let summaryLink = document.querySelector(".read-summary-link").firstElementChild;
+      card.html.classList.add("flip");
+    }
 
-      summaryLink.addEventListener("click", event => {
-        this.showSummary(ARTICLE_INFO_FOR_CARD);
+    selectSummaryLink() {
+      let summaryLinks = [...document.getElementsByClassName("read-summary-link")];
+
+      document.addEventListener("click", event => {
+        if (summaryLinks.includes(event.target)) {
+          console.log('yes');
+        }
       });
+      
+      // summaryLink.addEventListener("click", event => {
+      //   this.showSummary(ARTICLE_INFO_FOR_CARD);
+      // });
     }
 
     showSummary(article) {
@@ -97,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let closeBtn = document.querySelector(".close-button");
 
       if (summary.length === 0) {
-        summary = "No Summary Is Available."  
+        summary = "No Summary Is Available.";
       }
       modalContent.innerHTML = articleInfo;
       modal.classList.add("show-modal");
@@ -126,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     populateAllCards(query, date) {
-      const CARDS = Utilities.identifyAllCards();
+      // const CARDS = Utilities.identifyAllCards();
       const CARDS_TO_WEBSITES = {
         cnn: "cnn.com",
         nationalreview: "nationalreview.com",
@@ -142,10 +159,10 @@ document.addEventListener("DOMContentLoaded", () => {
         newsweek: "newsweek.com",
       }
 
-      for (let i = 0; i < CARDS.length; i += 1) {
-        let card = CARDS[i].id;
+      for (let i = 0; i < this.cards.length; i += 1) {
+        let card = this.cards[i].html.id;
         let website = CARDS_TO_WEBSITES[card];
-
+        
         API.getNews(query, date, website, this.populateCard.bind(this), this.showNoContentMessage.bind(this));
       }
     }
