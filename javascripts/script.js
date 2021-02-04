@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     showNoContentMessage(fetchedUrl) {
-      const CARDS = Utilities.identifyAllCards();
       let card = this.matchCardToFetchedNewsSource(fetchedUrl);
       let cardBack = Utilities.getCardBack(card);
 
@@ -81,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let articleInfo = this.templates["no-content-placement"](ARTICLE_INFO_FOR_CARD); 
       cardBack.innerHTML = articleInfo;
-      card.classList.add("flip");
+      card.html.classList.add("flip");
     }
 
     populateAllCards(query, date) {
